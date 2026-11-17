@@ -25,6 +25,10 @@ function even() {
  * @param {*} n
  */
 function sumTo(n) {
+    if (n < 1) {
+        return undefined;
+    }
+
     let sum = 0;
     for (let i = 1; i <= n; i++) {
         sum += i;
@@ -37,9 +41,15 @@ function sumTo(n) {
  * @param {*} n
  */
 function recSumTo(n) {
-    // Базовый случай: если дошли до 1, возвращаем 1, чтобы остановить рекурсию
-    if (n === 1) return 1;
-    // Иначе прибавляем текущее число к сумме всех предыдущих
+    // Защита от бесконечной рекурсии при передаче 0 или отрицательных чисел
+    if (n < 1) {
+        return undefined;
+    }
+
+    // Базовый случай остановки рекурсии
+    if (n === 1) {
+        return 1;
+    }
     return n + recSumTo(n - 1);
 }
 
@@ -48,7 +58,13 @@ function recSumTo(n) {
  * @param {*} n
  */
 function factorial(n) {
-    if (n === 0 || n === 1) return 1;
+    if (n < 0) {
+        return undefined;
+    }
+
+    if (n === 0 || n === 1) {
+        return 1;
+    }
     return n * factorial(n - 1);
 }
 
@@ -60,6 +76,9 @@ function isBinary(n) {
     // Число должно быть больше 0. Трюк с побитовым И:
     // У степени двойки в двоичном коде только одна единица (например, 8 это 1000).
     // Если отнять 1, получим 0111. 1000 & 0111 === 0.
+    if (n <= 0) {
+        return false;
+    }
     return n > 0 && (n & (n - 1)) === 0;
 }
 
@@ -68,15 +87,22 @@ function isBinary(n) {
  * @param {*} n
  */
 function fibonacci(n) {
-    if (n <= 2) return 1;
-    let a = 1;
-    let b = 1;
-    for (let i = 3; i <= n; i++) {
-        let c = a + b;
-        a = b;
-        b = c;
+    if (n < 1) {
+        return undefined;
     }
-    return b;
+
+    if (n <= 2) {
+        return 1;
+    }
+
+    let prev = 1;
+    let current = 1;
+    for (let i = 3; i <= n; i++) {
+        let next = prev + current;
+        prev = current;
+        current = next;
+    }
+    return current;
 }
 
 /** Напишите функцию, которая принимает начальное значение и функцию операции
