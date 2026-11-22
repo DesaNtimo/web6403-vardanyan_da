@@ -1,0 +1,210 @@
+/* Все цвета сайта задаются исключительно через CSS-переменные */
+:root {
+    --color-bg: #f1f5f9;
+    --color-white: #ffffff;
+    --color-surface-alt: #f8fafc;
+    --color-header-bg: #1e293b;
+    --color-text: #334155;
+    --color-accent: #3b82f6;
+    --color-border: #e2e8f0;
+    --color-shadow: rgba(59, 130, 246, 0.35);
+}
+
+/* Базовый блок страницы */
+.page {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Блок шапки */
+.header {
+    background-color: var(--color-header-bg);
+    color: var(--color-white);
+    padding: 25px 20px;
+    text-align: center;
+    border-bottom: 3px solid var(--color-accent);
+}
+
+.header__title {
+    font-size: 46px;
+    font-weight: 800;
+    margin: 0 0 10px 0;
+}
+
+.header__subtitle {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Блок основного контейнера */
+.container {
+    max-width: 1200px;
+    margin: 30px auto;
+    background-color: var(--color-white);
+    padding: 30px;
+    border-radius: 12px;
+}
+
+/* Блок навигации (Flexbox) */
+.nav {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--color-border);
+}
+
+.nav__link {
+    padding: 6px 14px;
+    text-decoration: none;
+    color: var(--color-text);
+    background-color: var(--color-surface-alt);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.nav__link:hover,
+.nav__link_active {
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    border-color: var(--color-accent);
+}
+
+/* Блок заголовков и текстов разделов */
+.section__title {
+    margin: 0 0 15px 0;
+    font-size: 26px;
+}
+
+.section__text {
+    margin: 0 0 15px 0;
+    font-size: 18px;
+}
+
+/* 1. Вёрстка Flexbox (страница index.html) */
+.intro {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.intro__content {
+    flex: 1;
+}
+
+/* 4. CSS-анимация (плавное парение и свечение логотипа) */
+@keyframes floatLogo {
+    0%, 100% {
+        transform: translateY(0);
+        box-shadow: none;
+    }
+    50% {
+        transform: translateY(-10px);
+        box-shadow: 0 14px 24px var(--color-shadow);
+    }
+}
+
+.intro__image {
+    width: 230px;
+    border-radius: 12px;
+    animation: floatLogo 3s ease-in-out infinite;
+}
+
+/* Блок таблицы (страница games.html) */
+.games-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 18px;
+}
+
+.games-table__head {
+    padding: 12px 14px;
+    background-color: var(--color-header-bg);
+    color: var(--color-white);
+}
+
+.games-table__cell {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.games-table__cell_right {
+    text-align: right;
+}
+
+/* Общий переиспользуемый блок карточки (about.html и form.html) */
+.card {
+    background-color: var(--color-surface-alt);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.card__title {
+    margin: 0 0 10px 0;
+    font-size: 20px;
+}
+
+/* 2. Вёрстка Grid (страница about.html) */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* 5. Блок формы авторизации (страница form.html) */
+.auth-form {
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.auth-form__field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.auth-form__label {
+    font-weight: 600;
+}
+
+.auth-form__input {
+    padding: 10px 12px;
+    font-family: inherit;
+    font-size: 16px;
+    color: var(--color-text);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+}
+
+.auth-form__checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.auth-form__button {
+    padding: 12px 18px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-white);
+    background-color: var(--color-accent);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.auth-form__button:hover {
+    background-color: var(--color-header-bg);
+}
